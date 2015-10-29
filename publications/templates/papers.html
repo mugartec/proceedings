@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ conference_instance.short_description }}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    {% load staticfiles %}
+    <link href="{% static "semantic/semantic.min.css" %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static "css/papers.css" %}" type="text/css" rel="stylesheet"/>
+    <script src="{% static "semantic/semantic.min.js" %}"></script>
+  </head>
+  <body>
+    <div id="content">
+      <h1 class="ui header">
+        {{ conference_instance.short_description }} Papers
+      </h1>
+      {% for tp in paper_types %}
+        <h3 class="ui header">
+          {{ tp }} papers
+        </h3>
+        <div class="ui fluid accordion">
+          {% for paper in tp.sorted_papers %}
+            <div class="title">
+              <i class="dropdown icon"></i>
+              {{ paper.conf_id }} - {{ paper.title }} {% if paper.pdf %}[<a href="{{ paper.pdf.url }}" target="_blank">pdf</a>]{% endif %}
+            </div>
+            <div class="content">
+              <h5 class="ui header">
+                Authors
+                <div class="sub header">
+                  {% for author in paper.authors.all %}
+                    {% if not forloop.first %}, {% endif %}<label class="popup" data-html="{% for aff in author.affiliations.all %}{% if not forloop.first %} &lt;br&gt; {% endif %}-{{aff}} {% endfor %}">{{author}}{% if author == paper.first_author %}*{% endif %}</label>
+                  {% endfor %}
+                </div>
+              </h5>
+
+              <h5 class="ui header">
+                Abstract
+                <div class="sub header">
+                  {{ paper.abstract }}
+                </div>
+              </h5>
+            </div>            
+          {% endfor %}
+        </div>
+        <div class="ui divider"></div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
+
+<script type='text/javascript'>
+  $('.popup').popup();
+  $('.ui.accordion').accordion();
+</script>
