@@ -73,3 +73,4 @@ migrations/
 /media/
 node_modules/
 /papers_info.json
+*.pdf
