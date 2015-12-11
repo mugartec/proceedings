@@ -17,8 +17,8 @@
 			"authors":
 				[
 					{
-						"affiliations": ["Great University", "Amazing Company"],
 						"name": "Full name of author",
+						"affiliations": ["Great University", "Amazing Company"],
 						"email": "my_email@myself.ninja"
 					}
 				],
