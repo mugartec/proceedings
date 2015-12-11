@@ -36,7 +36,7 @@ class Command(BaseCommand):
             try:
                 content = open(paper.tex_path()).read()
             except:
-                print('ERROR: File %s could not be opened, make sure it exists and has read permissions.', paper.tex_path())
+                print('ERROR: File %s could not be opened, make sure it exists and has read permissions.' % paper.tex_path())
 
             position = content.find('%firstpage')
             if position == -1:
