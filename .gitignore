@@ -68,9 +68,5 @@ target/
 # Bets
 extras/
 migrations/
-/manage.py
-/static/
-/media/
-node_modules/
 /papers_info.json
 *.pdf
